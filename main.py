@@ -53,8 +53,7 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.pushButton_Shifr.clicked.connect(self.btnShifr)
         self.ui.pushButton_DeShifr.clicked.connect(self.btnDeShifr)
         self.ui.pushButton_SaveFile_Shifr.clicked.connect(self.btnSaveFile_Shifr)
-        self.ui.comboBox_shifrLang.addItems(['rus', 'en'])
-        self.ui.comboBox_PassType.addItems(['Да', 'Нет'])
+        self.ui.pushButton_UserInf_Cheak.clicked.connect()
 
     def btnChange(self):
         self.ui.pushButton_GenPass.clicked.connect(self.btnGenPass)
@@ -104,7 +103,6 @@ class mywindow(QtWidgets.QMainWindow):
                 else:
                     error('Неверно выбран язык!')
 
-
     def btnDeShifr(self):
         if self.ui.lineEdit_Key.text() == '' or self.ui.textEdit_Text.toPlainText() == '':
             error('Данные не заполнены!')
@@ -136,6 +134,8 @@ class mywindow(QtWidgets.QMainWindow):
                 with open(self.savefile_window.filename, 'w') as file:
                     file.write('{}'.format(self.ui.textEdit_Shifr.toPlainText()))
 
+    def btnSelectUser(self):
+        pass
 
 tabula_recta_en = 'abcdefghijklmnopqrstuvwxyz'
 tabula_recta_rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
@@ -200,7 +200,48 @@ def genpassword(symbol_count, type):
     return alltext
 
 
+# class Users():
+#     def __init__(self, user1):
+#         self.user1 = user1
+#         # , user2, user3, user4
+#         # self.user2 = user2
+#         # self.user3 = user3
+#         # self.user4 = user4
 
+
+class User():
+    def __init__(self, user, pravchange, file1, file2, file3, file4):
+        self.user = user
+        self.pravchange = pravchange
+        self.file1 = file1
+        self.file2 = file2
+        self.file3 = file3
+        self.file4 = file4
+
+
+class File():
+    def __init__(self, filename, ban, write, read, full, sendprav):
+        self.filename = filename
+        self.ban = ban
+        self.write = write
+        self.read = read
+        self.full = full
+        self.sendprav = sendprav
+
+
+admin = User('Admin', True, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
+         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+
+user1 = User('User1', False, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
+         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+user2 = User('User2', False, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
+         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+user3 = User('User3', False, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
+         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+user4 = User('User4', False, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
+         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+
+print(admin.file1.filename)
 app = QtWidgets.QApplication([])
 application = mywindow()
 application.show()

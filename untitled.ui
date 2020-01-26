@@ -9,26 +9,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>290</width>
-    <height>355</height>
+    <width>640</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>290</width>
-    <height>355</height>
+    <width>640</width>
+    <height>480</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>290</width>
-    <height>355</height>
+    <width>640</width>
+    <height>480</height>
    </size>
   </property>
   <property name="baseSize">
    <size>
-    <width>290</width>
-    <height>355</height>
+    <width>640</width>
+    <height>480</height>
    </size>
   </property>
   <property name="tabletTracking">
@@ -49,12 +49,12 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>271</width>
-      <height>331</height>
+      <width>621</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <property name="accessibleName">
@@ -66,8 +66,8 @@
      <widget class="QSpinBox" name="spinBox">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>7</y>
+        <x>390</x>
+        <y>57</y>
         <width>42</width>
         <height>22</height>
        </rect>
@@ -97,8 +97,8 @@
      <widget class="QPushButton" name="pushButton_GenPass">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>60</y>
+        <x>190</x>
+        <y>110</y>
         <width>241</width>
         <height>23</height>
        </rect>
@@ -110,8 +110,8 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>190</x>
+        <y>60</y>
         <width>191</width>
         <height>16</height>
        </rect>
@@ -123,8 +123,8 @@
      <widget class="QPushButton" name="pushButton_SaveFile_Pass">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>270</y>
+        <x>190</x>
+        <y>320</y>
         <width>241</width>
         <height>23</height>
        </rect>
@@ -136,8 +136,8 @@
      <widget class="QTextEdit" name="textEdit_PassList">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>90</y>
+        <x>190</x>
+        <y>140</y>
         <width>241</width>
         <height>171</height>
        </rect>
@@ -149,8 +149,8 @@
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>35</y>
+        <x>190</x>
+        <y>85</y>
         <width>91</width>
         <height>16</height>
        </rect>
@@ -162,12 +162,22 @@
      <widget class="QComboBox" name="comboBox_PassType">
       <property name="geometry">
        <rect>
-        <x>106</x>
-        <y>30</y>
+        <x>286</x>
+        <y>80</y>
         <width>69</width>
         <height>22</height>
        </rect>
       </property>
+      <item>
+       <property name="text">
+        <string>Да</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Нет</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -177,8 +187,8 @@
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>180</x>
+        <y>60</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -190,8 +200,8 @@
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>12</x>
-        <y>128</y>
+        <x>182</x>
+        <y>178</y>
         <width>47</width>
         <height>13</height>
        </rect>
@@ -203,8 +213,8 @@
      <widget class="QLineEdit" name="lineEdit_Key">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>124</y>
+        <x>220</x>
+        <y>174</y>
         <width>131</width>
         <height>20</height>
        </rect>
@@ -213,9 +223,9 @@
      <widget class="QPushButton" name="pushButton_Shifr">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>150</y>
-        <width>91</width>
+        <x>180</x>
+        <y>200</y>
+        <width>111</width>
         <height>23</height>
        </rect>
       </property>
@@ -226,9 +236,9 @@
      <widget class="QPushButton" name="pushButton_DeShifr">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>150</y>
-        <width>91</width>
+        <x>310</x>
+        <y>200</y>
+        <width>111</width>
         <height>23</height>
        </rect>
       </property>
@@ -239,8 +249,8 @@
      <widget class="QPushButton" name="pushButton_SaveFile_Shifr">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>270</y>
+        <x>180</x>
+        <y>320</y>
         <width>241</width>
         <height>23</height>
        </rect>
@@ -252,8 +262,8 @@
      <widget class="QTextEdit" name="textEdit_Text">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>30</y>
+        <x>180</x>
+        <y>80</y>
         <width>241</width>
         <height>81</height>
        </rect>
@@ -262,8 +272,8 @@
      <widget class="QTextEdit" name="textEdit_Shifr">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>180</y>
+        <x>180</x>
+        <y>230</y>
         <width>241</width>
         <height>81</height>
        </rect>
@@ -275,12 +285,556 @@
      <widget class="QComboBox" name="comboBox_shifrLang">
       <property name="geometry">
        <rect>
-        <x>182</x>
-        <y>123</y>
+        <x>352</x>
+        <y>173</y>
         <width>69</width>
         <height>22</height>
        </rect>
       </property>
+      <item>
+       <property name="text">
+        <string>rus</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>en</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Права доступа</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_UserInf">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>60</y>
+        <width>221</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Пользователь</string>
+      </property>
+      <widget class="QCheckBox" name="checkBox_UserInf_EditStatus">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>201</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Редактирования прав</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_47">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>34</y>
+         <width>60</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Юзер:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_UserInf_User">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>30</y>
+         <width>141</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Admin</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User4</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QPushButton" name="pushButton_UserInf_Cheak">
+       <property name="geometry">
+        <rect>
+         <x>55</x>
+         <y>84</y>
+         <width>113</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Выбрать</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_FileLook">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>60</y>
+        <width>221</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Просмотр прав доступа</string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <widget class="QCheckBox" name="checkBox_FileLook_Ban">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>70</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Полный запрет</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FileLook_Write">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>90</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Запись</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FileLook_Read">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>110</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Чтение</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FileLook_Full">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>130</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Полный доступ</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FileLook_SendPrav">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>150</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Передача прав</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_42">
+       <property name="geometry">
+        <rect>
+         <x>41</x>
+         <y>44</y>
+         <width>60</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Файл:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_FileLook_File">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>40</y>
+         <width>111</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>File1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>File2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>File3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>File4</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_FilePravEdit">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>180</y>
+        <width>221</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Управление доступом к файлам</string>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <widget class="QComboBox" name="comboBox_FilePravEdit_User">
+       <property name="geometry">
+        <rect>
+         <x>57</x>
+         <y>20</y>
+         <width>141</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Admin</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User4</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_43">
+       <property name="geometry">
+        <rect>
+         <x>17</x>
+         <y>24</y>
+         <width>60</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Юзер:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_44">
+       <property name="geometry">
+        <rect>
+         <x>17</x>
+         <y>54</y>
+         <width>60</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Файл:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_FilePravEdit_File">
+       <property name="geometry">
+        <rect>
+         <x>57</x>
+         <y>50</y>
+         <width>141</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>File1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>File2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>File3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>File4</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FilePravEdit_SendPrav">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>160</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Передача прав</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FilePravEdit_Write">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>100</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Запись</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FilePravEdit_Read">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>120</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Чтение</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FilePravEdit_Ban">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>80</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Полный запрет</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_FilePravEdit_Full">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>140</y>
+         <width>151</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Полный доступ</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_ChangePrav">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>260</y>
+        <width>221</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Права пользователей</string>
+      </property>
+      <widget class="QLabel" name="label_45">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>64</y>
+         <width>121</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ред. прав польз.:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_46">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>34</y>
+         <width>60</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Юзер:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_ChangePrav_User">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>30</y>
+         <width>141</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Admin</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User4</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBox_ChangePrav_Type">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>60</y>
+         <width>71</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Да</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Нет</string>
+        </property>
+       </item>
+      </widget>
      </widget>
     </widget>
    </widget>
