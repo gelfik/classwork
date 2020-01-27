@@ -18,7 +18,7 @@ def error(text):
     msg = QMessageBox()
     msg.setIcon(QMessageBox.Warning)
     msg.setText(text)
-    msg.setWindowTitle("Error")
+    msg.setWindowTitle("Info")
     msg.setStandardButtons(QMessageBox.Ok)
     retval = msg.exec_()
 
@@ -48,12 +48,259 @@ class mywindow(QtWidgets.QMainWindow):
         super(mywindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.label_UserInf_Status.setText(get_YesNo(admin.pravchange))
+
         self.ui.pushButton_GenPass.clicked.connect(self.btnGenPass)
         self.ui.pushButton_SaveFile_Pass.clicked.connect(self.btnSaveFile_Pass)
         self.ui.pushButton_Shifr.clicked.connect(self.btnShifr)
         self.ui.pushButton_DeShifr.clicked.connect(self.btnDeShifr)
         self.ui.pushButton_SaveFile_Shifr.clicked.connect(self.btnSaveFile_Shifr)
-        self.ui.pushButton_UserInf_Cheak.clicked.connect()
+
+        self.ui.checkBox_FilePravEdit_Ban.clicked.connect(self.btnCheckBox_StatusChange)
+        self.ui.checkBox_FilePravEdit_Write.clicked.connect(self.btnCheckBox_StatusChange)
+        self.ui.checkBox_FilePravEdit_Read.clicked.connect(self.btnCheckBox_StatusChange)
+        self.ui.checkBox_FilePravEdit_Full.clicked.connect(self.btnCheckBox_StatusChange)
+        self.ui.checkBox_FilePravEdit_SendPrav.clicked.connect(self.btnCheckBox_StatusChange)
+
+        self.ui.comboBox_UserInf_User.view().pressed.connect(self.updateSelectUser)
+        self.ui.comboBox_ChangePrav_User.view().pressed.connect(self.updatePravSelectUser)
+        self.ui.comboBox_ChangePrav_Type.view().pressed.connect(self.updatePravUser)
+        self.ui.comboBox_FileLook_File.view().pressed.connect(self.updateListPrav)
+        self.ui.comboBox_FilePravEdit_File.view().pressed.connect(self.updateSelectPravChangeFile)
+        self.ui.comboBox_FilePravEdit_User.view().pressed.connect(self.updateSelectPravChangeUser)
+
+        self.user = admin
+        self.ui.label_FileLook_Ban.setText(get_YesNo(self.user.file1.ban))
+        self.ui.label_FileLook_Write.setText(get_YesNo(self.user.file1.write))
+        self.ui.label_FileLook_Read.setText(get_YesNo(self.user.file1.read))
+        self.ui.label_FileLook_Full.setText(get_YesNo(self.user.file1.full))
+        self.ui.label_FileLook_SendPrav.setText(get_YesNo(self.user.file1.sendprav))
+
+        self.ui.comboBox_FilePravEdit_File.clear()
+        if self.user.file1.sendprav:
+            self.ui.comboBox_FilePravEdit_File.addItem('File1')
+        if self.user.file2.sendprav:
+            self.ui.comboBox_FilePravEdit_File.addItem('File2')
+        if self.user.file3.sendprav:
+            self.ui.comboBox_FilePravEdit_File.addItem('File3')
+        if self.user.file4.sendprav:
+            self.ui.comboBox_FilePravEdit_File.addItem('File4')
+
+        self.ui.comboBox_FilePravEdit_User.setCurrentIndex(0)
+        self.ui.comboBox_FilePravEdit_File.setCurrentIndex(0)
+        filename = self.ui.comboBox_FilePravEdit_File.currentText()
+        user = self.ui.comboBox_FilePravEdit_User.currentText()
+        self.change_LookPravFile(self.get_FileName(user, filename))
+
+    def updateSelectPravChangeFile(self, index):
+        item = self.ui.comboBox_FilePravEdit_File.model().itemFromIndex(index).row()
+        self.ui.comboBox_FilePravEdit_File.setCurrentIndex(item)
+        filename = self.ui.comboBox_FilePravEdit_File.currentText()
+        user = self.ui.comboBox_FilePravEdit_User.currentText()
+        self.change_LookPravFile(self.get_FileName(user, filename))
+
+    def updateSelectPravChangeUser(self, index):
+        self.ui.comboBox_FilePravEdit_File.clear()
+        if self.user.file1.sendprav or self.user.file1.full:
+            self.ui.comboBox_FilePravEdit_File.addItem('File1')
+        if self.user.file2.sendprav or self.user.file2.full:
+            self.ui.comboBox_FilePravEdit_File.addItem('File2')
+        if self.user.file3.sendprav or self.user.file3.full:
+            self.ui.comboBox_FilePravEdit_File.addItem('File3')
+        if self.user.file4.sendprav or self.user.file4.full:
+            self.ui.comboBox_FilePravEdit_File.addItem('File4')
+        item = self.ui.comboBox_FilePravEdit_User.model().itemFromIndex(index).row()
+        self.ui.comboBox_FilePravEdit_User.setCurrentIndex(item)
+        filename = self.ui.comboBox_FilePravEdit_File.currentText()
+        user = self.ui.comboBox_FilePravEdit_User.currentText()
+        self.change_LookPravFile(self.get_FileName(user, filename))
+
+    def updateSelectUser(self, index):
+        item = self.ui.comboBox_UserInf_User.model().itemFromIndex(index).row()
+        if item == 0:
+            self.user = admin
+        elif item == 1:
+            self.user = user1
+        elif item == 2:
+            self.user = user2
+        elif item == 3:
+            self.user = user3
+        elif item == 4:
+            self.user = user4
+
+        self.ui.comboBox_FileLook_File.setCurrentIndex(0)
+        self.ui.label_FileLook_Ban.setText(get_YesNo(self.user.file1.ban))
+        self.ui.label_FileLook_Write.setText(get_YesNo(self.user.file1.write))
+        self.ui.label_FileLook_Read.setText(get_YesNo(self.user.file1.read))
+        self.ui.label_FileLook_Full.setText(get_YesNo(self.user.file1.full))
+        self.ui.label_FileLook_SendPrav.setText(get_YesNo(self.user.file1.sendprav))
+
+        self.ui.comboBox_FilePravEdit_User.setCurrentIndex(0)
+        self.ui.comboBox_FilePravEdit_File.setCurrentIndex(0)
+
+        if self.user.pravchange == True:
+            self.ui.groupBox_ChangePrav.setVisible(True)
+            self.ui.comboBox_ChangePrav_User.setCurrentIndex(0)
+            self.ui.label_UserInf_Status.setText(get_YesNo(self.user.pravchange))
+            self.ui.comboBox_ChangePrav_Type.setCurrentIndex(get_UserPrav(user1))
+        else:
+            self.ui.groupBox_ChangePrav.setVisible(False)
+            self.ui.label_UserInf_Status.setText(get_YesNo(self.user.pravchange))
+
+        self.ui.comboBox_FilePravEdit_File.setEnabled(True)
+        self.ui.comboBox_FilePravEdit_User.setEnabled(True)
+
+        self.ui.checkBox_FilePravEdit_Ban.setEnabled(True)
+        self.ui.checkBox_FilePravEdit_Write.setEnabled(True)
+        self.ui.checkBox_FilePravEdit_Read.setEnabled(True)
+        self.ui.checkBox_FilePravEdit_Full.setEnabled(True)
+        self.ui.checkBox_FilePravEdit_SendPrav.setEnabled(True)
+        self.ui.comboBox_FilePravEdit_File.clear()
+        if self.user.file1.sendprav or self.user.file1.full:
+            self.ui.comboBox_FilePravEdit_File.addItem('File1')
+        if self.user.file2.sendprav or self.user.file2.full:
+            self.ui.comboBox_FilePravEdit_File.addItem('File2')
+        if self.user.file3.sendprav or self.user.file3.full:
+            self.ui.comboBox_FilePravEdit_File.addItem('File3')
+        if self.user.file4.sendprav or self.user.file4.full:
+            self.ui.comboBox_FilePravEdit_File.addItem('File4')
+
+        if self.ui.comboBox_FilePravEdit_File.currentText() and self.ui.comboBox_FilePravEdit_User.currentText():
+            filename = self.ui.comboBox_FilePravEdit_File.currentText()
+            user = self.ui.comboBox_FilePravEdit_User.currentText()
+            self.change_LookPravFile(self.get_FileName(user, filename))
+        else:
+            self.ui.comboBox_FilePravEdit_File.setEnabled(False)
+            self.ui.comboBox_FilePravEdit_User.setEnabled(False)
+            self.ui.checkBox_FilePravEdit_Ban.setEnabled(False)
+            self.ui.checkBox_FilePravEdit_Write.setEnabled(False)
+            self.ui.checkBox_FilePravEdit_Read.setEnabled(False)
+            self.ui.checkBox_FilePravEdit_Full.setEnabled(False)
+            self.ui.checkBox_FilePravEdit_SendPrav.setEnabled(False)
+
+    def updatePravSelectUser(self, index):
+        item = self.ui.comboBox_ChangePrav_User.model().itemFromIndex(index).row()
+        if item == 0:
+            self.ui.comboBox_ChangePrav_Type.setCurrentIndex(get_UserPrav(user1))
+        elif item == 1:
+            self.ui.comboBox_ChangePrav_Type.setCurrentIndex(get_UserPrav(user2))
+        elif item == 2:
+            self.ui.comboBox_ChangePrav_Type.setCurrentIndex(get_UserPrav(user3))
+        elif item == 3:
+            self.ui.comboBox_ChangePrav_Type.setCurrentIndex(get_UserPrav(user4))
+
+    def updatePravUser(self, index):
+        user = self.ui.comboBox_ChangePrav_User.currentText()
+        item = self.ui.comboBox_ChangePrav_Type.model().itemFromIndex(index).row()
+        if self.user.pravchange == True:
+            update_UserPrav(self.get_UserName(user), item)
+            self.ui.comboBox_ChangePrav_Type.setCurrentIndex(item)
+            if self.user.user == user:
+                self.ui.label_UserInf_Status.setText(get_YesNo(self.user.pravchange))
+                self.ui.groupBox_ChangePrav.setVisible(False)
+            error(f'Права пользователя {user} на редактирование прав других пользователей изменены!')
+        else:
+            error(f'Вы не можете изменять права!')
+
+    def updateListPrav(self, index):
+        item = self.ui.comboBox_FileLook_File.model().itemFromIndex(index).row()
+        self.ui.comboBox_FileLook_File.setCurrentIndex(item)
+        file = self.get_FileName(self.user, self.ui.comboBox_FileLook_File.currentText())
+        self.ui.label_FileLook_Ban.setText(get_YesNo(file.ban))
+        self.ui.label_FileLook_Write.setText(get_YesNo(file.write))
+        self.ui.label_FileLook_Read.setText(get_YesNo(file.read))
+        self.ui.label_FileLook_Full.setText(get_YesNo(file.full))
+        self.ui.label_FileLook_SendPrav.setText(get_YesNo(file.sendprav))
+
+    def btnCheckBox_StatusChange(self):
+        ban = self.ui.checkBox_FilePravEdit_Ban.isChecked()
+        write = self.ui.checkBox_FilePravEdit_Write.isChecked()
+        read = self.ui.checkBox_FilePravEdit_Read.isChecked()
+        full = self.ui.checkBox_FilePravEdit_Full.isChecked()
+        sendprav = self.ui.checkBox_FilePravEdit_SendPrav.isChecked()
+        filename = self.ui.comboBox_FilePravEdit_File.currentText()
+        user = self.ui.comboBox_FilePravEdit_User.currentText()
+        file = self.get_FileName(user, filename)
+
+        ban_status = self.get_PravStatusUser(file, 'ban')
+        write_status = self.get_PravStatusUser(file, 'write')
+        read_status = self.get_PravStatusUser(file, 'read')
+        full_status = self.get_PravStatusUser(file, 'full')
+        sendprav_status = self.get_PravStatusUser(file, 'sendprav')
+        user_dostup_filename = self.get_FileName(self.user, filename)
+        # if user_dostup_filename.full:
+        #     if ban:
+        #         self.ui.checkBox_FilePravEdit_Write.setChecked(False)
+        #         self.ui.checkBox_FilePravEdit_Read.setChecked(False)
+        #         self.ui.checkBox_FilePravEdit_Full.setChecked(False)
+        #         self.ui.checkBox_FilePravEdit_SendPrav.setChecked(False)
+        #         self.change_PravFile_ban(file, True, False, False, False, False)
+        #         self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #         if ban_status == ban:
+        #             error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
+        #         else:
+        #             error(f'Права на файл {filename} для пользователя {user} ИЗМЕНЕНЫ!')
+        #     else:
+        #         if sendprav and not user_dostup_filename.sendprav:
+        #             if user_dostup_filename.sendprav:
+        #                 self.change_PravFile_ban(file, ban, write, read, full, sendprav)
+        #                 self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #                 error(f'Права на передачу прав файла {filename} для пользователя {user} ИЗМЕНЕНЫ!')
+        #             else:
+        #                 self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status,
+        #                                                sendprav_status)
+        #                 error(f'У вас нет прав на передачу прав для файла {filename}!')
+        #         else:
+        #             self.change_PravFile_ban(file, ban, write, read, full, sendprav)
+        #             self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #             error(f'Права на файл {filename} для пользователя {user} ИЗМЕНЕНЫ!')
+        # elif sendprav:
+        #     if user_dostup_filename.sendprav:
+        #         self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
+        #         error(f'У вас нет прав на передачу прав для файла {filename}!')
+        #     else:
+        #         self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
+        #         error(f'У вас нет прав для файла {filename}!')
+        if full_status:
+            if ban:
+                self.ui.checkBox_FilePravEdit_Write.setChecked(False)
+                self.ui.checkBox_FilePravEdit_Read.setChecked(False)
+                self.ui.checkBox_FilePravEdit_Full.setChecked(False)
+                self.ui.checkBox_FilePravEdit_SendPrav.setChecked(False)
+                self.change_PravFile(file, True, False, False, False, False)
+                self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+                if ban_status == ban:
+                    self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
+                    error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
+                else:
+                    error(f'Права на файл {filename} для пользователя {user} ИЗМЕНЕНЫ!')
+            elif full or read or write:
+                if full_status:
+                    self.change_PravFile(file, ban, write, read, full, sendprav)
+                    self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+                    error(f'Права на файл {filename} для пользователя {user} ИЗМЕНЕНЫ!')
+                else:
+                    self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
+                    error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
+        # elif sendprav_status:
+        #     if sendprav:
+        #         pass
+        #     else:
+        #         self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
+        #         error(f'У вас нет прав на передачу прав для файла {filename}!')
+
+        else:
+            self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
+            error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
+
+
+    def change_lookCheakBoxStatus(self, ban_status, write_status, read_status, full_status, sendprav_status):
+        self.ui.checkBox_FilePravEdit_Ban.setChecked(ban_status)
+        self.ui.checkBox_FilePravEdit_Write.setChecked(write_status)
+        self.ui.checkBox_FilePravEdit_Read.setChecked(read_status)
+        self.ui.checkBox_FilePravEdit_Full.setChecked(full_status)
+        self.ui.checkBox_FilePravEdit_SendPrav.setChecked(sendprav_status)
+
 
     def btnChange(self):
         self.ui.pushButton_GenPass.clicked.connect(self.btnGenPass)
@@ -135,10 +382,105 @@ class mywindow(QtWidgets.QMainWindow):
                     file.write('{}'.format(self.ui.textEdit_Shifr.toPlainText()))
 
     def btnSelectUser(self):
-        pass
+        self.ui.groupBox_ChangePrav.setVisible(False)
+        self.ui.groupBox_FilePravEdit.setVisible(False)
+        self.ui.groupBox_FileLook.setVisible(False)
+
+        user = self.ui.comboBox_UserInf_User.currentText()
+        print(user)
+        self.user = self.get_UserName(user)
+
+        if self.user.pravchange == True:
+            self.ui.groupBox_ChangePrav.setVisible(True)
+            self.ui.label_UserInf_Status.setText(get_YesNo(self.user.pravchange))
+        else:
+            self.ui.groupBox_ChangePrav.setVisible(False)
+            self.ui.label_UserInf_Status.setText(get_YesNo(self.user.pravchange))
+
+        self.ui.groupBox_FilePravEdit.setVisible(True)
+        self.ui.groupBox_FileLook.setVisible(True)
+
+    def get_UserName(self, user):
+        if user == 'Admin':
+            return admin
+        elif user == 'User1':
+            return user1
+        elif user == 'User2':
+            return user2
+        elif user == 'User3':
+            return user3
+        elif user == 'User4':
+            return user4
+        else:
+            return self.user
+
+    def get_FileName(self, username, filename):
+        if filename == 'File1':
+            return self.get_UserName(username).file1
+        elif filename == 'File2':
+            return self.get_UserName(username).file2
+        elif filename == 'File3':
+            return self.get_UserName(username).file3
+        elif filename == 'File4':
+            return self.get_UserName(username).file4
+
+    def get_PravStatusUser(self, file, param):
+        if param == 'ban':
+            return file.ban
+        elif param == 'write':
+            return file.write
+        elif param == 'read':
+            return file.read
+        elif param == 'full':
+            return file.full
+        elif param == 'sendprav':
+            return file.sendprav
+
+    def change_LookPravFile(self, user):
+        self.ui.checkBox_FilePravEdit_Ban.setChecked(user.ban)
+        self.ui.checkBox_FilePravEdit_Write.setChecked(user.write)
+        self.ui.checkBox_FilePravEdit_Read.setChecked(user.read)
+        self.ui.checkBox_FilePravEdit_Full.setChecked(user.full)
+        self.ui.checkBox_FilePravEdit_SendPrav.setChecked(user.sendprav)
+
+    def change_LookPicFile(self, user, filename):
+        file = self.get_FileName(user, filename)
+        self.ui.label_FileLook_Ban.setText(get_YesNo(file.ban))
+        self.ui.label_FileLook_Write.setText(get_YesNo(file.write))
+        self.ui.label_FileLook_Read.setText(get_YesNo(file.read))
+        self.ui.label_FileLook_Full.setText(get_YesNo(file.full))
+        self.ui.label_FileLook_SendPrav.setText(get_YesNo(file.sendprav))
+
+    def change_PravFile(self, user, ban, write, read, full, sendprav):
+        user.ban = ban
+        user.write = write
+        user.read = read
+        user.full = full
+        user.sendprav = sendprav
 
 tabula_recta_en = 'abcdefghijklmnopqrstuvwxyz'
 tabula_recta_rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+
+
+def get_UserPrav(user):
+    if user.pravchange == True:
+        return 0
+    else:
+        return 1
+
+
+def get_YesNo(param):
+    if param == True:
+        return 'Да'
+    else:
+        return 'Нет'
+
+
+def update_UserPrav(user, type):
+    if type == 0:
+        user.pravchange = True
+    else:
+        user.pravchange = False
 
 
 def cheaktext(text, tabula):
@@ -230,16 +572,16 @@ class File():
 
 
 admin = User('Admin', True, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
-         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+             File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
 
-user1 = User('User1', False, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
-         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+user1 = User('User1', True, File('File1', True, True, True, True, True), File('File2', False, False, True, True, True),
+             File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
 user2 = User('User2', False, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
-         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
-user3 = User('User3', False, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
-         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
-user4 = User('User4', False, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
-         File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+             File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
+user3 = User('User3', False, File('File1', False, True, True, True, False), File('File2', False, True, True, True, True),
+             File('File3', False, True, True, True, False), File('File4', False, True, True, True, True))
+user4 = User('User4', False, File('File1', False, True, True, True, True), File('File2', False, True, True, False, False),
+             File('File3', False, True, True, False, False), File('File4', False, True, True, True, True))
 
 print(admin.file1.filename)
 app = QtWidgets.QApplication([])
