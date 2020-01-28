@@ -228,107 +228,50 @@ class mywindow(QtWidgets.QMainWindow):
         full_status = self.get_PravStatusUser(file, 'full')
         sendprav_status = self.get_PravStatusUser(file, 'sendprav')
         user_dostup_filename = self.get_FileName(self.user, filename)
-        # if user_dostup_filename.full:
-        #     if ban:
-        #         self.ui.checkBox_FilePravEdit_Write.setChecked(False)
-        #         self.ui.checkBox_FilePravEdit_Read.setChecked(False)
-        #         self.ui.checkBox_FilePravEdit_Full.setChecked(False)
-        #         self.ui.checkBox_FilePravEdit_SendPrav.setChecked(False)
-        #         self.change_PravFile_ban(file, True, False, False, False, False)
-        #         self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-        #         if ban_status == ban:
-        #             error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
-        #         else:
-        #             error(f'Права на файл {filename} для пользователя {user} ИЗМЕНЕНЫ!')
-        #     else:
-        #         if sendprav and not user_dostup_filename.sendprav:
-        #             if user_dostup_filename.sendprav:
-        #                 self.change_PravFile_ban(file, ban, write, read, full, sendprav)
-        #                 self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-        #                 error(f'Права на передачу прав файла {filename} для пользователя {user} ИЗМЕНЕНЫ!')
-        #             else:
-        #                 self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status,
-        #                                                sendprav_status)
-        #                 error(f'У вас нет прав на передачу прав для файла {filename}!')
-        #         else:
-        #             self.change_PravFile_ban(file, ban, write, read, full, sendprav)
-        #             self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-        #             error(f'Права на файл {filename} для пользователя {user} ИЗМЕНЕНЫ!')
-        # elif sendprav:
-        #     if user_dostup_filename.sendprav:
-        #         self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
-        #         error(f'У вас нет прав на передачу прав для файла {filename}!')
-        #     else:
-        #         self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
-        #         error(f'У вас нет прав для файла {filename}!')
 
-
-        # if full_status:
-        #     if ban:
-        #         self.ui.checkBox_FilePravEdit_Write.setChecked(False)
-        #         self.ui.checkBox_FilePravEdit_Read.setChecked(False)
-        #         self.ui.checkBox_FilePravEdit_Full.setChecked(False)
-        #         self.ui.checkBox_FilePravEdit_SendPrav.setChecked(False)
-        #         self.change_PravFile(file, True, False, False, False, False)
-        #         self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-        #         if ban_status == ban:
-        #             self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
-        #             error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
-        #         else:
-        #             error(f'Права на файл {filename} для пользователя {user} ИЗМЕНЕНЫ!')
-        #     elif full or read or write:
-        #         if full_status:
-        #             self.change_PravFile(file, ban, write, read, full, sendprav)
-        #             self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-        #             error(f'Права на файл {filename} для пользователя {user} ИЗМЕНЕНЫ!')
-        #         else:
-        #             self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
-        #             error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
-        # # elif sendprav_status:
-        # #     if sendprav:
-        # #         pass
-        # #     else:
-        # #         self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
-        # #         error(f'У вас нет прав на передачу прав для файла {filename}!')
-        #
-        # else:
-        #     self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
-        #     error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
-        if ban:
-            self.ui.checkBox_FilePravEdit_Write.setChecked(False)
-            self.ui.checkBox_FilePravEdit_Read.setChecked(False)
-            self.ui.checkBox_FilePravEdit_Full.setChecked(False)
-            self.ui.checkBox_FilePravEdit_SendPrav.setChecked(False)
+        if not full_status and ban:
+            self.change_PravFile(file, False, True, True, True, True)
+            self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        elif not ban_status and full:
             self.change_PravFile(file, True, False, False, False, False)
             self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-            if ban_status == ban:
-                self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
-                error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
-            else:
-                error(f'Полный запрет на файл {filename} для пользователя {user} УСТАНОВЛЕН!')
-        elif ban_status:
-            self.change_PravFile(file, False, False, False, False, False)
-            self.change_lookCheakBoxStatus(False, write_status, read_status, full_status, sendprav_status)
-            self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-            error(f'Полный запрет на файл {filename} для пользователя {user} СНЯТ!')
 
-        if write or read or full:
-            self.change_PravFile(file, ban, write, read, full, sendprav)
-            self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-            error(f'Права на файл {filename} для пользователя {user} УСТАНОВЛЕНЫ!')
-        elif write_status or read_status or full_status:
-            self.change_PravFile(file, ban, write, read, full, sendprav)
-            self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-            error(f'Права на файл {filename} для пользователя {user} СНЯТЫ!')
 
-        if sendprav and not sendprav_status:
-            self.change_PravFile(file, ban, write, read, full, sendprav)
-            self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-            error(f'Права на передачу прав файла {filename} для пользователя {user} УСТАНОВЛЕНЫ!')
-        elif sendprav_status:
-            self.change_PravFile(file, ban, write, read, full, sendprav)
-            self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
-            error(f'Права на передачу прав файла {filename} для пользователя {user} СНЯТЫ!')
+        # if ban:
+        #     self.ui.checkBox_FilePravEdit_Write.setChecked(False)
+        #     self.ui.checkBox_FilePravEdit_Read.setChecked(False)
+        #     self.ui.checkBox_FilePravEdit_Full.setChecked(False)
+        #     self.ui.checkBox_FilePravEdit_SendPrav.setChecked(False)
+        #     self.change_PravFile(file, True, False, False, False, False)
+        #     self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #     if ban_status == ban:
+        #         self.change_lookCheakBoxStatus(ban_status, write_status, read_status, full_status, sendprav_status)
+        #         error(f'Не удалось изменить права на файл {filename} для пользователя {user}!')
+        #     else:
+        #         error(f'Полный запрет на файл {filename} для пользователя {user} УСТАНОВЛЕН!')
+        # elif ban_status:
+        #     self.change_PravFile(file, False, False, False, False, False)
+        #     self.change_lookCheakBoxStatus(False, write_status, read_status, full_status, sendprav_status)
+        #     self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #     error(f'Полный запрет на файл {filename} для пользователя {user} СНЯТ!')
+        #
+        # if full or read or write:
+        #     self.change_PravFile(file, ban, write, read, full, sendprav)
+        #     self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #     error(f'Права на файл {filename} для пользователя {user} УСТАНОВЛЕНЫ!')
+        # elif full_status or read_status or write_status:
+        #     self.change_PravFile(file, ban, write, read, full, sendprav)
+        #     self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #     error(f'Права на файл {filename} для пользователя {user} СНЯТЫ!')
+        #
+        # elif sendprav:
+        #     self.change_PravFile(file, ban, write, read, full, sendprav)
+        #     self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #     error(f'Права на передачу прав файла {filename} для пользователя {user} УСТАНОВЛЕНЫ!')
+        # elif sendprav_status:
+        #     self.change_PravFile(file, ban, write, read, full, sendprav)
+        #     self.change_LookPicFile(self.user, self.ui.comboBox_FileLook_File.currentText())
+        #     error(f'Права на передачу прав файла {filename} для пользователя {user} СНЯТЫ!')
 
     def change_lookCheakBoxStatus(self, ban_status, write_status, read_status, full_status, sendprav_status):
         self.ui.checkBox_FilePravEdit_Ban.setChecked(ban_status)
@@ -493,6 +436,11 @@ class mywindow(QtWidgets.QMainWindow):
         user.read = read
         user.full = full
         user.sendprav = sendprav
+        self.ui.checkBox_FilePravEdit_Ban.setChecked(ban)
+        self.ui.checkBox_FilePravEdit_Write.setChecked(write)
+        self.ui.checkBox_FilePravEdit_Read.setChecked(read)
+        self.ui.checkBox_FilePravEdit_Full.setChecked(full)
+        self.ui.checkBox_FilePravEdit_SendPrav.setChecked(sendprav)
 
 tabula_recta_en = 'abcdefghijklmnopqrstuvwxyz'
 tabula_recta_rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
