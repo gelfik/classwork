@@ -141,7 +141,7 @@ class mywindow(QtWidgets.QMainWindow):
     def updateAllTwoChange(self):
         poradok_text_stolb = self.ui.lineEdit_Poradak_Stolb.text()
         poradok_text_line = self.ui.lineEdit_Poradak_Strok.text()
-        old_text = self.ui.lineEdit_Fraza.text()
+        old_text = self.ui.lineEdit_Fraza.text().ljust(25, " ")
         twochange.list_text = []
         for i in range(5):
             twochange.list_text.append(old_text[i * 5:i * 5 + 5])
