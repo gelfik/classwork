@@ -8,6 +8,7 @@
 # sys.exit(app.exec())
 import random
 
+import PyQt5
 from PyQt5 import QtWidgets
 from design import Ui_MainWindow  # импорт нашего сгенерированного файла
 from PyQt5.QtWidgets import QWidget, QFileDialog, QMessageBox, QTableWidgetItem
@@ -57,6 +58,10 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.pushButton_DeShifr.clicked.connect(self.btnDeShifr)
         self.ui.pushButton_SaveFile_Shifr.clicked.connect(self.btnSaveFile_Shifr)
 
+        self.ui.lineEdit_Fraza.textChanged.connect(self.updateAllTwoChange)
+        self.ui.lineEdit_Poradak_Stolb.textChanged.connect(self.updatePoradak_Stolb)
+        self.ui.lineEdit_Poradak_Strok.textChanged.connect(self.updatePoradak_Strok)
+
         self.ui.checkBox_FilePravEdit_Ban.clicked.connect(lambda: self.btnCheckBox_StatusChange('ban'))
         self.ui.checkBox_FilePravEdit_Write.clicked.connect(lambda: self.btnCheckBox_StatusChange('write'))
         self.ui.checkBox_FilePravEdit_Read.clicked.connect(lambda: self.btnCheckBox_StatusChange('read'))
@@ -92,7 +97,85 @@ class mywindow(QtWidgets.QMainWindow):
         user = self.ui.comboBox_FilePravEdit_User.currentText()
         self.change_LookPravFile(self.get_FileName(user, filename))
 
+        # self.ui.lineEdit_Fraza.setInputMask('XXXXXXXXXXXXXXXXXXXXXXXXX')
+        self.ui.lineEdit_Poradak_Stolb.setInputMask('99999')
+        self.ui.lineEdit_Poradak_Strok.setInputMask('99999')
+
         self.updateTableUserPrav()
+
+    def updatePoradak_Stolb(self):
+        poradok_text_stolb = self.ui.lineEdit_Poradak_Stolb.text()
+        if len(poradok_text_stolb) == 5:
+            symbol_list = ['6', '7', '8', '9', '0']
+            status = True
+            for i, text in enumerate(symbol_list):
+                if not poradok_text_stolb.find(text) == -1:
+                    status = False
+            if status:
+                self.updateAllTwoChange()
+            else:
+                self.ui.lineEdit_Poradak_Stolb.setText('12345')
+                error('Введите числа для задания порадка в диапазоне от 1 до 5!')
+        else:
+            self.ui.lineEdit_Poradak_Stolb.setText('12345')
+            error('Заполните порядок столбцов!')
+
+    def updatePoradak_Strok(self):
+        poradok_text_stolb = self.ui.lineEdit_Poradak_Stolb.text()
+        poradok_text_line = self.ui.lineEdit_Poradak_Strok.text()
+        if len(poradok_text_line) == 5:
+            symbol_list = ['6', '7', '8', '9', '0']
+            status = True
+            for i, text in enumerate(symbol_list):
+                if not poradok_text_line.find(text) == -1:
+                    status = False
+            if status:
+                self.updateAllTwoChange()
+            else:
+                self.ui.lineEdit_Poradak_Strok.setText('12345')
+                error('Введите числа для задания порадка в диапазоне от 1 до 5!')
+        else:
+            self.ui.lineEdit_Poradak_Strok.setText('12345')
+            error('Заполните порядок строк!')
+
+    def updateAllTwoChange(self):
+        poradok_text_stolb = self.ui.lineEdit_Poradak_Stolb.text()
+        poradok_text_line = self.ui.lineEdit_Poradak_Strok.text()
+        old_text = self.ui.lineEdit_Fraza.text()
+        twochange.list_text = []
+        for i in range(5):
+            twochange.list_text.append(old_text[i * 5:i * 5 + 5])
+
+        for i, text in enumerate(twochange.list_text):
+            j = 0
+            for j in range(5):
+                self.ui.tableWidget_Osn.setItem(i, j, QTableWidgetItem(text[j:j+1]))
+                j += 1
+
+        twochange.list_stolb = []
+        for i, text in enumerate(twochange.list_text):
+            new_text = ''
+            for j in range(5):
+                count = int(poradok_text_stolb[j:j+1])
+                new_text += text[count - 1:count]
+            twochange.list_stolb.append(new_text)
+        for i, text in enumerate(twochange.list_stolb):
+            for j in range(5):
+                self.ui.tableWidget_Stolb.setItem(i, j, QTableWidgetItem(text[j:j+1]))
+                j += 1
+
+        twochange.list_line = ['', '', '', '', '']
+        for i in range(5):
+            stroka_text = ''
+            count = int(poradok_text_line[i:i+1])
+            for j, text in enumerate(twochange.list_stolb):
+                stroka_text += text[count - 1:count]
+            twochange.list_line[i] = stroka_text
+
+        for i, text in enumerate(twochange.list_line):
+            for j in range(5):
+                self.ui.tableWidget_Strok.setItem(i, j, QTableWidgetItem(text[j:j+1]))
+                j += 1
 
     def updateSelectPravChangeFile(self, index):
         item = self.ui.comboBox_FilePravEdit_File.model().itemFromIndex(index).row()
@@ -561,6 +644,10 @@ def genpassword(symbol_count, type):
 #         # self.user3 = user3
 #         # self.user4 = user4
 
+class TwoChange():
+    def __init__(self):
+        list_stolb = []
+        list_line = []
 
 class User():
     def __init__(self, user, pravchange, file1, file2, file3, file4):
@@ -581,6 +668,7 @@ class File():
         self.sendprav = sendprav
         self.full = full
 
+twochange = TwoChange()
 
 admin = User('Admin', True, File('File1', False, True, True, True, True), File('File2', False, True, True, True, True),
              File('File3', False, True, True, True, True), File('File4', False, True, True, True, True))
