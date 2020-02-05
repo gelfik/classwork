@@ -103,6 +103,24 @@ class mywindow(QtWidgets.QMainWindow):
 
         self.updateTableUserPrav()
 
+        self.ui.tableWidget_Osn.setColumnWidth(0,20)
+        self.ui.tableWidget_Osn.setColumnWidth(1, 20)
+        self.ui.tableWidget_Osn.setColumnWidth(2, 20)
+        self.ui.tableWidget_Osn.setColumnWidth(3, 20)
+        self.ui.tableWidget_Osn.setColumnWidth(4, 20)
+
+        self.ui.tableWidget_Stolb.setColumnWidth(0, 20)
+        self.ui.tableWidget_Stolb.setColumnWidth(1, 20)
+        self.ui.tableWidget_Stolb.setColumnWidth(2, 20)
+        self.ui.tableWidget_Stolb.setColumnWidth(3, 20)
+        self.ui.tableWidget_Stolb.setColumnWidth(4, 20)
+
+        self.ui.tableWidget_Strok.setColumnWidth(0, 20)
+        self.ui.tableWidget_Strok.setColumnWidth(1, 20)
+        self.ui.tableWidget_Strok.setColumnWidth(2, 20)
+        self.ui.tableWidget_Strok.setColumnWidth(3, 20)
+        self.ui.tableWidget_Strok.setColumnWidth(4, 20)
+
     def updatePoradak_Stolb(self):
         poradok_text_stolb = self.ui.lineEdit_Poradak_Stolb.text()
         if len(poradok_text_stolb) == 5:

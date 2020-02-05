@@ -959,17 +959,17 @@
         <property name="alternatingRowColors">
          <bool>true</bool>
         </property>
-        <attribute name="horizontalHeaderDefaultSectionSize">
-         <number>138</number>
-        </attribute>
         <attribute name="horizontalHeaderMinimumSectionSize">
          <number>30</number>
         </attribute>
-        <attribute name="verticalHeaderDefaultSectionSize">
-         <number>55</number>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>138</number>
         </attribute>
         <attribute name="verticalHeaderMinimumSectionSize">
          <number>23</number>
+        </attribute>
+        <attribute name="verticalHeaderDefaultSectionSize">
+         <number>55</number>
         </attribute>
         <row>
          <property name="text">
@@ -1231,6 +1231,12 @@
         <height>21</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -1251,98 +1257,20 @@
        <string>Фраза:</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget_Osn">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>160</y>
-        <width>122</width>
-        <height>122</height>
-       </rect>
-      </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::NoEditTriggers</set>
-      </property>
-      <property name="sortingEnabled">
-       <bool>false</bool>
-      </property>
-      <attribute name="horizontalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>24</number>
-      </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>24</number>
-      </attribute>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>24</number>
-      </attribute>
-      <attribute name="verticalHeaderMinimumSectionSize">
-       <number>24</number>
-      </attribute>
-      <row>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>3</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>4</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>5</string>
-       </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>3</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>4</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>5</string>
-       </property>
-      </column>
-     </widget>
      <widget class="QTableWidget" name="tableWidget_Stolb">
       <property name="geometry">
        <rect>
         <x>270</x>
-        <y>160</y>
+        <y>170</y>
         <width>122</width>
         <height>122</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -1350,19 +1278,19 @@
       <attribute name="horizontalHeaderVisible">
        <bool>false</bool>
       </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
+      <attribute name="horizontalHeaderMinimumSectionSize">
        <number>24</number>
       </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
+      <attribute name="horizontalHeaderDefaultSectionSize">
        <number>24</number>
       </attribute>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
+      <attribute name="verticalHeaderMinimumSectionSize">
        <number>24</number>
       </attribute>
-      <attribute name="verticalHeaderMinimumSectionSize">
+      <attribute name="verticalHeaderDefaultSectionSize">
        <number>24</number>
       </attribute>
       <row>
@@ -1420,10 +1348,16 @@
       <property name="geometry">
        <rect>
         <x>460</x>
-        <y>160</y>
+        <y>170</y>
         <width>122</width>
         <height>122</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
@@ -1431,19 +1365,19 @@
       <attribute name="horizontalHeaderVisible">
        <bool>false</bool>
       </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
+      <attribute name="horizontalHeaderMinimumSectionSize">
        <number>24</number>
       </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
+      <attribute name="horizontalHeaderDefaultSectionSize">
        <number>24</number>
       </attribute>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
+      <attribute name="verticalHeaderMinimumSectionSize">
        <number>24</number>
       </attribute>
-      <attribute name="verticalHeaderMinimumSectionSize">
+      <attribute name="verticalHeaderDefaultSectionSize">
        <number>24</number>
       </attribute>
       <row>
@@ -1513,11 +1447,17 @@
      <widget class="QLineEdit" name="lineEdit_Poradak_Stolb">
       <property name="geometry">
        <rect>
-        <x>392</x>
-        <y>137</y>
+        <x>368</x>
+        <y>138</y>
         <width>44</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>12345</string>
@@ -1548,11 +1488,17 @@
      <widget class="QLineEdit" name="lineEdit_Poradak_Strok">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>135</y>
+        <x>540</x>
+        <y>136</y>
         <width>44</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>12345</string>
@@ -1566,6 +1512,139 @@
       <property name="dragEnabled">
        <bool>false</bool>
       </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_Osn">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>170</y>
+        <width>122</width>
+        <height>122</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>9</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="autoScroll">
+       <bool>true</bool>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="dragDropOverwriteMode">
+       <bool>true</bool>
+      </property>
+      <property name="textElideMode">
+       <enum>Qt::ElideRight</enum>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>24</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>24</number>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>24</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>24</number>
+      </attribute>
+      <row>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>
